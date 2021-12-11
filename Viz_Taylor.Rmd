@@ -1,0 +1,51 @@
+---
+title: "Taylor Swift Viz"
+author: "Natalia Esquenazi"
+date: "11/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Intalacion de librerias: 
+
+```{r warning=FALSE, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(viridis)
+library(hrbrthemes)
+library(plyr)
+library(DescTools)
+library(data.table)
+library(EnvStats)
+library(ggplot2)  
+library(qcc)
+library(plotly)
+library(ggplot2)
+library(summarytools)
+library(hrbrthemes)
+library(viridis)
+library(readr)
+```
+
+Descargo paquete de Taylor Viz: 
+
+```{r warning=FALSE, include=FALSE}
+install.packages(c("tayloRswift"))
+library(tayloRswift)
+```
+
+Importo el dataset: 
+
+```{r warning=FALSE, include=FALSE}
+taylor_swift_lyrics <- read_csv("taylor_swift_lyrics.csv")
+```
+
+
+
+
+
+
