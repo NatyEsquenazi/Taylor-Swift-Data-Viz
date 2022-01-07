@@ -5,13 +5,15 @@ Natalia Esquenazi
 
 ## Objetivo
 
-Este analisis tiene el objetivo de estudiar cuantitativamente el
-desempeño musical de Taylor Swift, artista a la cual admiro por su
+Este analisis tiene el objetivo de estudiar cuantitativamente el las
+canciones y albumbs de Taylor Swift, artista a la cual admiro por su
 trabajo en defensa de los derechos de las mujeres y diversidades.
 
-La motivacion principal esta orientada a generar una visualizacion
-interactiva que utilize un dataset con letras de sus canciones y el
-paquete TayloRswift con colores caracteristicos de la artista.
+La motivacion principal esta orientada a generar visualizaciones a
+partir de un dataset con letras de sus canciones y el paquete
+TayloRswift con colores caracteristicos de los albums de la artista.
+
+![](https://media.giphy.com/media/3o7aCSsc6sx9s92wbm/giphy.gif)
 
 ## Analisis Exploratorio
 
@@ -62,6 +64,7 @@ Para descargar el paquete de Taylor Swift hay que hacerlo de la
 siguiente manera:
 
 ``` r
+#install.packages("tayloRswift")
 library(tayloRswift)
 ```
 
@@ -108,7 +111,8 @@ group_by(track_title) %>%
 summarise(length = sum(length))
 ```
 
-Voy a realizar la primera visualizacion\!
+Voy a realizar la primera visualizacion con colores de la paleta
+SpeakNow\!
 
 ``` r
 plot_1 <- length_df %>%
@@ -117,7 +121,7 @@ plot_1 <- length_df %>%
 
 plot_1 %>% 
   ggplot(aes(x= reorder(track_title, -length), y=length)) +
-    geom_bar(stat="identity", fill="#8c8c8c")+
+    geom_bar(stat="identity", fill="#4b2671")+
     coord_flip()+
     ylab("Cantidad de palabras") + 
     xlab ("Titulo de la cancion") +
@@ -130,7 +134,7 @@ observar el top 10 de canciones con mayor cantidad de palabras de Taylor
 Swift, en la cual “End Game” es una de las mas largas\!
 
 Ahora en una segunda visualizacion obervo el top 10 de canciones con
-menor cantidad de palabras
+menor cantidad de palabras y la paleta de colores de Evermore.
 
 ``` r
 plot_2 <- length_df %>%
@@ -139,7 +143,7 @@ plot_2 <- length_df %>%
 
 plot_2 %>% 
   ggplot(aes(x= reorder(track_title, -length), y=length)) +
-    geom_bar(stat="identity", fill="#b4a382")+
+    geom_bar(stat="identity", fill="#3d2620")+
     coord_flip()+
     ylab("Cantidad de palabras") + 
     xlab ("Titulo de la cancion") +
@@ -150,7 +154,9 @@ plot_2 %>%
 ![](Viz_Taylor_files/figure-gfm/viz2-1.png)<!-- -->
 
 Finalmente observo la distribucion de la cantidad de palabras de las
-canciones
+canciones con la paleta Lover.
+
+![`lover`](https://upload.wikimedia.org/wikipedia/en/c/cd/Taylor_Swift_-_Lover.png)
 
 ``` r
 plot_3 <- ggplot(data = length_df,
@@ -161,5 +167,11 @@ plot_3 <- ggplot(data = length_df,
           scale_fill_taylor(palette = "lover", guide = "none", discrete = FALSE)+
           ylab("Count") + 
           xlab ("Cantidad de palabras") +
-          ggtitle("Distribucion de la cantidad de palabras")
+          ggtitle("Distribucion de la cantidad de palabras de canciones de Taylor Swift")
+plot_3
 ```
+
+![](Viz_Taylor_files/figure-gfm/viz3-1.png)<!-- --> En el grafico
+observamos que Taylor Swift tiene pocas canciones con 600 palabras o
+mas, al igual que 200 palabras o menos. El promedio de cantidad de
+palabras se ubica en 375 aproximadamente.
