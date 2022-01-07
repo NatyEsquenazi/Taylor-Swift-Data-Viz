@@ -2,47 +2,147 @@
 title: "Taylor Swift Viz"
 author: "Natalia Esquenazi"
 date: "11/12/2021"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Intalacion de librerias: 
+## Objetivo 
 
-```{r warning=FALSE, include=FALSE}
+Este analisis tiene el objetivo de estudiar cuantitativamente el desempeño musical de Taylor Swift, artista a la cual admiro por su trabajo en defensa de los derechos de las mujeres y diversidades. 
+
+La motivacion principal esta orientada a generar una visualizacion interactiva que utilize un dataset con letras de sus canciones y el paquete TayloRswift con colores caracteristicos de la artista.   
+
+## Analisis Exploratorio
+
+Primero instalamos las siguientes librerias: 
+
+```{r import, warning=FALSE, include=TRUE}
 library(tidyverse)
 library(dplyr)
 library(tidyr)
-library(viridis)
-library(hrbrthemes)
-library(plyr)
-library(DescTools)
-library(data.table)
-library(EnvStats)
 library(ggplot2)  
-library(qcc)
 library(plotly)
-library(ggplot2)
-library(summarytools)
-library(hrbrthemes)
-library(viridis)
 library(readr)
 ```
 
-Descargo paquete de Taylor Viz: 
+Para descargar el paquete de Taylor Swift hay que hacerlo de la siguiente manera:
 
-```{r warning=FALSE, include=FALSE}
-install.packages(c("tayloRswift"))
+```{r import2, warning=FALSE, include=TRUE}
 library(tayloRswift)
 ```
 
-Importo el dataset: 
+El dataset de letras de musica cuenta con 4862 observaciones y las siguientes variables:
 
-```{r warning=FALSE, include=FALSE}
-taylor_swift_lyrics <- read_csv("taylor_swift_lyrics.csv")
+- artist
+- album 
+- track_title
+- track_n
+- lyric
+- line
+- year
+
+Empecemos cargando el dataset, usando las herramientas que nos da Tidyverse.
+
+```{r datos, warning=FALSE, include=TRUE}
+df <- read_csv("taylor_swift_lyrics.csv")
 ```
+
+Primero me voy a quedar con el top 10 de canciones que tengan mayor cantidad de palabras y luego agrupamos la cantidad de palabras detectadas por titulo de cancion. 
+
+```{r explore, warning=FALSE, include=TRUE}
+df$length <- str_count(df$lyric,"\\S+")
+```
+
+```{r explore2, warning=FALSE, include=TRUE}
+length_df <- df %>%
+group_by(track_title) %>%
+summarise(length = sum(length))
+```
+
+Voy a realizar la primera visualizacion! 
+
+```{r viz, warning=FALSE, include=TRUE}
+
+plot_1 <- length_df %>%
+  arrange(desc(length)) %>%
+  slice(1:10) 
+
+plot_1 %>% 
+  ggplot(aes(x= reorder(track_title, -length), y=length)) +
+    geom_bar(stat="identity", fill="#8c8c8c")+
+    coord_flip()+
+    ylab("Cantidad de palabras") + 
+    xlab ("Titulo de la cancion") +
+    ggtitle("Top 10 de canciones con mayor cantidad de palabras") +
+    theme_minimal() 
+
+```
+En el grafico podemos observar el top 10 de canciones con mayor cantidad de palabras de Taylor Swift, en la cual "End Game" es una de las mas largas!
+
+Ahora en una segunda visualizacion obervo el top 10 de canciones con menor cantidad de palabras
+
+```{r viz2, warning=FALSE, include=TRUE}
+plot_2 <- length_df %>%
+  arrange(length) %>%
+  slice(1:10) 
+
+plot_2 %>% 
+  ggplot(aes(x= reorder(track_title, -length), y=length)) +
+    geom_bar(stat="identity", fill="#b4a382")+
+    coord_flip()+
+    ylab("Cantidad de palabras") + 
+    xlab ("Titulo de la cancion") +
+    ggtitle("Top 10 de canciones con menor cantidad de palabras") +
+    theme_minimal() 
+```
+
+Finalmente observo la distribucion de la cantidad de palabras de las canciones 
+
+```{r viz3, warning=FALSE, include=TRUE}
+               
+plot_3 <- ggplot(data = length_df,
+                 mapping = aes(x = length)) + 
+          geom_histogram(bins = 30, aes(fill = ..count..))+
+          geom_vline(aes(xintercept=mean(length)), color="#FFFFFF", linetype="dashed", size=1)+
+          theme_minimal()+
+          scale_fill_taylor(palette = "lover", guide = "none", discrete = FALSE)+
+          ylab("Count") + 
+          xlab ("Cantidad de palabras") +
+          ggtitle("Distribucion de la cantidad de palabras")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
