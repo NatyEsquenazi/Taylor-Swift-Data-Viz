@@ -67,7 +67,7 @@ summarise(length = sum(length))
 
 Voy a realizar la primera visualizacion con colores de la paleta SpeakNow! 
 
-```{r viz, warning=FALSE, include=TRUE}
+```{r viz}
 
 plot_1 <- length_df %>%
   arrange(desc(length)) %>%
@@ -86,7 +86,7 @@ En el grafico podemos observar el top 10 de canciones con mayor cantidad de pala
 
 Ahora en una segunda visualizacion obervo el top 10 de canciones con menor cantidad de palabras y la paleta de colores de Evermore.
 
-```{r viz2, warning=FALSE, include=TRUE}
+```{r viz2}
 plot_2 <- length_df %>%
   arrange(length) %>%
   slice(1:10) 
@@ -105,7 +105,7 @@ Finalmente observo la distribucion de la cantidad de palabras de las canciones c
 
 ![`lover`](https://upload.wikimedia.org/wikipedia/en/c/cd/Taylor_Swift_-_Lover.png)
 
-```{r viz3, warning=FALSE, include=TRUE}
+```{r viz3}
                
 plot_3 <- ggplot(data = length_df,
                  mapping = aes(x = length)) + 
