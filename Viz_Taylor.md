@@ -129,9 +129,11 @@ plot_1 %>%
     theme_minimal() 
 ```
 
-![](Viz_Taylor_files/figure-gfm/viz-1.png)<!-- --> En el grafico podemos
-observar el top 10 de canciones con mayor cantidad de palabras de Taylor
-Swift, en la cual “End Game” es una de las mas largas\!
+![](Viz_Taylor_files/figure-gfm/viz-1.png)<!-- -->
+
+En el grafico podemos observar el top 10 de canciones con mayor cantidad
+de palabras de Taylor Swift, en la cual “End Game” es una de las mas
+largas\!
 
 Ahora en una segunda visualizacion obervo el top 10 de canciones con
 menor cantidad de palabras y la paleta de colores de Evermore.
@@ -171,7 +173,8 @@ plot_3 <- ggplot(data = length_df,
 plot_3
 ```
 
-![](Viz_Taylor_files/figure-gfm/viz3-1.png)<!-- --> En el grafico
-observamos que Taylor Swift tiene pocas canciones con 600 palabras o
-mas, al igual que 200 palabras o menos. El promedio de cantidad de
-palabras se ubica en 375 aproximadamente.
+![](Viz_Taylor_files/figure-gfm/viz3-1.png)<!-- -->
+
+En el grafico observamos que Taylor Swift tiene pocas canciones con 600
+palabras o mas, al igual que 200 palabras o menos. El promedio de
+cantidad de palabras se ubica en 375 aproximadamente.
