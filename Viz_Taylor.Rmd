@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Objetivo 
 
-Este analisis tiene el objetivo de estudiar cuantitativamente el las canciones y albumbs de Taylor Swift, artista a la cual admiro por su trabajo en defensa de los derechos de las mujeres y diversidades. 
+Este analisis tiene el objetivo de estudiar cuantitativamente las canciones y albums de Taylor Swift, artista a la cual admiro por su trabajo en defensa de los derechos de las mujeres y diversidades. 
 
 La motivacion principal esta orientada a generar visualizaciones a partir de un dataset con letras de sus canciones y el paquete TayloRswift con colores caracteristicos de los albums de la artista.   
 
